@@ -5,16 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- GSAP Library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
 </head>
 <body>
+    <header class="topbar">
+        <nav class="nav">
+            <a href="#home" class="nav-logo">Profile</a>
+            <ul class="nav-links">
+                <li><a href="#about">About me</a></li>
+                <li><a href="#studies">Studies</a></li>
+                <li><a href="#experience">Professional experience</a></li>
+                <li><a href="#hobby">Hobby</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
     <div class="background-image">
+        <div class="overlay"></div>
         <div class="profile-container">
-            <img src="assets/images/profile-picture.jpg" alt="Profile Picture" class="profile-picture">
+            <img src="assets/images/profile-picture.svg" alt="Profile Picture" class="profile-picture">
             <div class="introduction">
-                <h1>Welcome to My Profile</h1>
-                <p>Hello! My name is [Your Name]. I am passionate about Japanese and Korean culture, and I enjoy exploring various aspects of these rich traditions. This webpage serves as a brief introduction to my background and experiences.</p>
+                <h1 class="intro-title">Welcome to My Profile</h1>
+                <p class="intro-text">Hi, thanks for wanting to get to know me better!</p>
             </div>
         </div>
     </div>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="page-section">
+        <div class="section-inner">
+            <h2>About me</h2>
+            <div class="section-content">
+                <p>Short bio — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                <img src="assets/images/placeholder.svg" alt="About image" class="section-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- STUDIES SECTION -->
+    <section id="studies" class="page-section alt">
+        <div class="section-inner">
+            <h2>Studies</h2>
+            <div class="section-content">
+                <p>Education details placeholder — Bachelor of Arts in Visual Culture, 20XX–20YY. Courses: Typography, History of East Asian Art, Web Design.</p>
+                <img src="assets/images/placeholder.svg" alt="Studies image" class="section-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <section id="experience" class="page-section">
+        <div class="section-inner">
+            <h2>Professional experience</h2>
+            <div class="section-content">
+                <p>Role 1 — Web Designer at Example Co. (20AA–20BB). Worked on layout design and portfolio sites.</p>
+                <p>Role 2 — Frontend Developer at Company XYZ. Focused on accessible, responsive UI and lightweight animation.</p>
+                <img src="assets/images/placeholder.svg" alt="Experience image" class="section-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- HOBBY SECTION -->
+    <section id="hobby" class="page-section alt">
+        <div class="section-inner">
+            <h2>Hobby</h2>
+            <div class="section-content">
+                <p>Hobbies include: photography, calligraphy, tea ceremony, hiking, and exploring traditional crafts.</p>
+                <img src="assets/images/placeholder.svg" alt="Hobby image" class="section-image">
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <script src="js/animations.js"></script>
 </body>
 </html>

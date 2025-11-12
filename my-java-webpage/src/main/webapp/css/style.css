@@ -1,32 +1,138 @@
+/* Basic page layout */
+html, body {
+    height: 100%;
+}
 body {
-    background-image: url('../assets/images/background.jpg'); /* Replace with your background image path */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: #fff;
+}
+
+/* smooth scrolling for anchor links */
+html { scroll-behavior: smooth; }
+
+/* top navigation */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(18, 18, 20, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.nav { width: 100%; max-width: 1100px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { color: #fff; font-weight: 700; text-decoration: none; font-size: 18px; }
+.nav-links { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; }
+.nav-links li a { color: #f3f3f3; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: background .18s; }
+.nav-links li a:hover, .nav-links li a:focus { background: rgba(255,255,255,0.06); }
+
+/* prevent content being hidden under fixed nav */
+body { padding-top: 64px; }
+
+/* Full-screen background container using generated SVG */
+.background-image {
+    position: relative;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/images/background.svg');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+}
+
+/* Slight dark overlay to improve legibility */
+.background-image .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+}
+
+.profile-container {
+    position: relative;
+    z-index: 1; /* above overlay */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
+    padding: 24px;
 }
 
 .profile-picture {
-    width: 150px; /* Adjust size as needed */
-    height: 150px; /* Adjust size as needed */
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 20px;
+    border: 4px solid rgba(255,255,255,0.9);
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    display: block;
+    margin-bottom: 18px;
 }
 
-.profile-picture img {
-    width: 100%;
-    height: auto;
+.profile-picture[src$='.svg'] {
+    background: transparent;
 }
 
 .introduction {
-    max-width: 600px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
-    border-radius: 10px;
+    max-width: 720px;
+    padding: 20px 28px;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 12px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.introduction h1 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+}
+
+.introduction p {
+    margin: 0;
+    color: #f0f0f0;
+}
+
+/* GSAP Animation Styles */
+.intro-text {
+    overflow: hidden;
+    display: block;
+}
+
+.split-char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+
+@media (max-width: 600px) {
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+    .introduction {
+        margin: 0 16px;
+        padding: 16px;
+    }
+    .introduction h1 { font-size: 20px; }
+}
+
+/* Sections styling */
+.page-section { padding: 56px 20px; background: transparent; color: #222; }
+.page-section .section-inner { max-width: 1000px; margin: 0 auto; background: rgba(255,255,255,0.92); padding: 28px; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.page-section.alt .section-inner { background: rgba(250,250,252,0.96); }
+.page-section h2 { margin-top: 0; color: #16202a; }
+.section-content { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.section-content p { flex: 1 1 420px; margin: 0; color: #333; }
+.section-image { width: 240px; height: 160px; object-fit: cover; border-radius: 8px; background: #ddd; border: 1px solid rgba(0,0,0,0.06); }
+
+@media (max-width: 800px) {
+    .section-content { flex-direction: column; }
+    .section-image { width: 100%; height: 200px; }
 }

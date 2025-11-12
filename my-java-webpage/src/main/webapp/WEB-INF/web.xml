@@ -11,7 +11,7 @@
 
     <servlet-mapping>
         <servlet-name>AppServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/profile</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
