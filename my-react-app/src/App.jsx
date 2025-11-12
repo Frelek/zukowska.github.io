@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SplitText, ChromaGrid } from './animations';
+import { SplitText, ChromaGrid, Panorama } from './animations';
 import profilePicture from './assets/profile-picture.svg';
 import placeholder from './assets/placeholder.svg';
 import './App.css';
@@ -148,12 +148,16 @@ function App() {
             <p style={{ marginBottom: '24px', color: '#333' }}>
               Hobbies include: photography, calligraphy, tea ceremony, hiking, and exploring traditional crafts.
             </p>
-            <div style={{ height: '600px', position: 'relative' }}>
-              <ChromaGrid 
-                radius={300}
-                damping={0.45}
-                fadeOut={0.6}
-                ease="power3.out"
+            <div className="panorama-container">
+              <Panorama
+                items={[
+                  'https://i.pravatar.cc/1200?img=11',
+                  'https://i.pravatar.cc/1200?img=12',
+                  'https://i.pravatar.cc/1200?img=13',
+                  'https://i.pravatar.cc/1200?img=14',
+                  'https://i.pravatar.cc/1200?img=15',
+                  'https://i.pravatar.cc/1200?img=16'
+                ]}
               />
             </div>
           </div>

@@ -406,3 +406,80 @@ main {
     font-size: 0.9em;
   }
 }
+
+/* ========================================
+   PANORAMA GALLERY (HOBBY SECTION)
+   ======================================== */
+.panorama-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.panorama-wrapper {
+  width: 100%;
+}
+
+.panorama {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.panorama-item {
+  flex: 0 0 auto;
+  width: calc((100% - 60px) / 6);
+  max-width: 320px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.panorama-item:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.panorama-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  padding: 20px;
+}
+
+.panorama-modal-img {
+  max-width: 95%;
+  max-height: 92%;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  object-fit: contain;
+}
+
+.panorama-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  z-index: 1001;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .panorama-item { width: 260px; height: 150px; }
+}
+
+@media (max-width: 560px) {
+  .panorama-item { width: 200px; height: 120px; }
+}
+

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Profile — Preview</title>
+  <style>
+    :root{--bg1:#f8f0e8;--accent:#6b21a8;--muted:#444}
+    *{box-sizing:border-box}
+    /* Background uses local image if available. Place your image at: assets/images/hero-bg.jpg */
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#111;background-color:#fde68a;background-image: url('assets/images/hero-bg.jpg'), linear-gradient(135deg,#fef3c7 0%,#fde68a 40%,#fbcfe8 100%);background-position: center center, center;background-size: cover, cover;background-repeat: no-repeat, no-repeat;background-attachment: fixed, scroll}
+    header{position:sticky;top:0;background:rgba(255,255,255,0.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:20}
+    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px}
+    .nav .logo{font-weight:700;color:var(--accent);text-decoration:none}
+    .nav ul{list-style:none;display:flex;gap:14px;margin:0;padding:0}
+    .nav a{color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:6px}
+    .nav a:hover{background:rgba(0,0,0,0.04)}
+
+    main{max-width:1100px;margin:22px auto;padding:0 16px}
+    .hero{display:flex;align-items:center;gap:20px;padding:28px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.6));box-shadow:0 8px 28px rgba(0,0,0,0.08)}
+    .profile-pic{width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+    .intro h1{margin:0;font-size:22px;color:var(--accent)}
+    .intro p{margin:8px 0 0;color:var(--muted);max-width:760px}
+
+    section{margin-top:26px}
+    .section-inner{background:#fff;padding:18px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.04)}
+    .section-title{margin:0 0 12px 0;font-size:18px;color:#0f172a}
+
+    /* Welcome overlay (full-screen) */
+    #welcome-overlay{position:fixed;inset:0;display:grid;place-items:center;z-index:1200;background:linear-gradient(rgba(6,6,7,0.65),rgba(6,6,7,0.45));backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);opacity:1}
+    #welcome-inner{padding:18px;text-align:center}
+    #welcome-text{color:#fff;font-weight:800;margin:0;font-size:clamp(28px,7vw,84px);line-height:1;letter-spacing:0.02em;text-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    .welcome-char{display:inline-block}
+    /* Panorama */
+    .panorama{display:flex;gap:12px;overflow-x:auto;padding:12px}
+    .panorama img{flex:0 0 auto;width:240px;height:150px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+    .panorama img:hover{transform:translateY(-6px);box-shadow:0 12px 36px rgba(0,0,0,0.18)}
+
+    /* modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:1000;padding:20px}
+    .modal img{max-width:96%;max-height:92%;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+    .modal .close{position:absolute;top:18px;right:20px;color:#fff;background:transparent;border:0;font-size:24px;cursor:pointer}
+    .modal .navbtn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.06);border:0;color:#fff;font-size:28px;padding:12px;border-radius:8px;cursor:pointer}
+    .modal .prev{left:18px}
+    .modal .next{right:18px}
+
+    @media (max-width:800px){.panorama img{width:200px;height:120px}}
+    @media (max-width:520px){.hero{flex-direction:column;align-items:center}.panorama img{width:160px;height:100px}}
+  </style>
+  <!-- GSAP for the intro animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <!-- Full-screen welcome overlay -->
+  <div id="welcome-overlay" aria-hidden="false">
+    <div id="welcome-inner">
+      <h1 id="welcome-text">Welcome to my page</h1>
+    </div>
+  </div>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="#">Simple Profile</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#studies">Studies</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#hobby">Hobby</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero" id="hero">
+      <img class="profile-pic" src="https://i.pravatar.cc/400?img=47" alt="Profile picture" />
+      <div class="intro">
+        <h1>Welcome — Hi, thanks for wanting to get to know me better!</h1>
+        <p>This is a simplified single-file preview page. Replace images and text with your own content. Scroll down to see sections and a panorama gallery under Hobby.</p>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="section-inner">
+        <h2 class="section-title">About me</h2>
+        <p>Short bio — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+      </div>
+    </section>
+
+    <section id="studies">
+      <div class="section-inner">
+        <h2 class="section-title">Studies</h2>
+        <p>Education placeholder — Bachelor of Arts in Visual Culture, 20XX–20YY.</p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-inner">
+        <h2 class="section-title">Professional experience</h2>
+        <p>Role 1 — Web Designer at Example Co. Role 2 — Frontend Developer at Company XYZ.</p>
+      </div>
+    </section>
+
+    <section id="hobby">
+      <div class="section-inner">
+        <h2 class="section-title">Hobby — Panorama</h2>
+        <p>Click any image to expand. Use Escape to close, and left/right arrow keys to navigate.</p>
+        <div class="panorama" id="panorama">
+          <img data-index="0" src="https://picsum.photos/1200/800?random=101" alt="pan-0">
+          <img data-index="1" src="https://picsum.photos/1200/800?random=102" alt="pan-1">
+          <img data-index="2" src="https://picsum.photos/1200/800?random=103" alt="pan-2">
+          <img data-index="3" src="https://picsum.photos/1200/800?random=104" alt="pan-3">
+          <img data-index="4" src="https://picsum.photos/1200/800?random=105" alt="pan-4">
+          <img data-index="5" src="https://picsum.photos/1200/800?random=106" alt="pan-5">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      const panorama = document.getElementById('panorama');
+      const images = Array.from(panorama.querySelectorAll('img'));
+      let current = 0;
+      let modalEl = null;
+
+      function openModal(idx){
+        current = idx;
+        modalEl = document.createElement('div');
+        modalEl.className = 'modal';
+        modalEl.innerHTML = `
+          <button class="close" aria-label="Close">✕</button>
+          <button class="navbtn prev" title="Previous">◀</button>
+          <button class="navbtn next" title="Next">▶</button>
+          <img src="${images[current].src}" alt="expanded" />
+        `;
+        document.body.appendChild(modalEl);
+        modalEl.querySelector('.close').addEventListener('click', closeModal);
+        modalEl.querySelector('.prev').addEventListener('click', () => show(current - 1));
+        modalEl.querySelector('.next').addEventListener('click', () => show(current + 1));
+        modalEl.addEventListener('click', (e)=>{ if(e.target===modalEl) closeModal(); });
+        document.addEventListener('keydown', onKeys);
+      }
+
+      function closeModal(){
+        if(!modalEl) return;
+        document.removeEventListener('keydown', onKeys);
+        modalEl.remove();
+        modalEl = null;
+      }
+
+      function show(idx){
+        if(idx < 0) idx = 0;
+        if(idx > images.length -1) idx = images.length -1;
+        current = idx;
+        if(modalEl) modalEl.querySelector('img').src = images[current].src;
+      }
+
+      function onKeys(e){
+        if(!modalEl) return;
+        if(e.key === 'Escape') closeModal();
+        if(e.key === 'ArrowLeft') show(current -1);
+        if(e.key === 'ArrowRight') show(current +1);
+      }
+
+      images.forEach(img => img.addEventListener('click', (e)=>{
+        const idx = Number(img.getAttribute('data-index')) || 0;
+        openModal(idx);
+      }));
+    })();
+  </script>
+
+  <script>
+    // Welcome overlay animation: split chars and animate then fade overlay out
+    (function(){
+      const overlay = document.getElementById('welcome-overlay');
+      const textEl = document.getElementById('welcome-text');
+      if(!overlay || !textEl || typeof gsap === 'undefined'){
+        // if GSAP missing, simply hide overlay after 1.5s
+        setTimeout(()=> overlay?.remove(), 1500);
+        return;
+      }
+
+      // Preload background image (optional) then run animation
+      (function preloadBgAndRun(){
+        const bg = new Image();
+        let started = false;
+        bg.src = 'assets/images/hero-bg.jpg';
+        const start = ()=>{ if(started) return; started = true; runAnimation(); };
+        bg.onload = start;
+        bg.onerror = ()=>{ /* ignore, still start */ start(); };
+        // fallback start after 700ms even if image not loaded
+        setTimeout(start, 700);
+      })();
+
+      // Split text into spans per character and animate
+      function runAnimation(){
+      const text = textEl.textContent.trim();
+      textEl.textContent = '';
+      const frag = document.createDocumentFragment();
+      const chars = [];
+      for(const ch of text){
+        const span = document.createElement('span');
+        span.className = 'welcome-char';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        frag.appendChild(span);
+        chars.push(span);
+      }
+      textEl.appendChild(frag);
+
+      // animate chars then pop overlay
+      gsap.set(chars, {opacity:0, y:40, display:'inline-block', transformOrigin:'50% 50%'});
+      const tl = gsap.timeline();
+      tl.to(chars, {opacity:1, y:0, duration:0.6, ease:'power3.out', stagger:0.028})
+        .to('#welcome-text', {scale:1.06, duration:0.5, ease:'power2.out'}, '>-0.1')
+        .to('#welcome-overlay', {opacity:0, duration:0.9, ease:'power2.inOut', delay:0.45, onComplete: ()=> overlay.remove()});
+      }
+    })();
+  </script>
+</body>
+</html>

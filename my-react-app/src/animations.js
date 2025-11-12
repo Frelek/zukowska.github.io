@@ -175,6 +175,66 @@ export const SplitText = ({
   return renderTag();
 };
 
+// ===== Panorama Component =====
+export const Panorama = ({ items }) => {
+  const demo = [
+    'https://i.pravatar.cc/1200?img=1',
+    'https://i.pravatar.cc/1200?img=2',
+    'https://i.pravatar.cc/1200?img=3',
+    'https://i.pravatar.cc/1200?img=4',
+    'https://i.pravatar.cc/1200?img=5',
+    'https://i.pravatar.cc/1200?img=6'
+  ];
+  const images = items && items.length ? items : demo;
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === 'Escape') setOpen(false);
+      if (!open) return;
+      if (e.key === 'ArrowRight') setIndex(i => Math.min(i + 1, images.length - 1));
+      if (e.key === 'ArrowLeft') setIndex(i => Math.max(i - 1, 0));
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, images.length]);
+
+  const handleClick = (i) => {
+    setIndex(i);
+    setOpen(true);
+  };
+
+  return (
+    <div className="panorama-wrapper">
+      <div className="panorama">
+        {images.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`panorama-${i}`}
+            className="panorama-item"
+            onClick={() => handleClick(i)}
+            loading="lazy"
+          />
+        ))}
+      </div>
+
+      {open && (
+        <div className="panorama-modal" role="dialog" aria-modal="true" onClick={() => setOpen(false)}>
+          <button className="panorama-modal-close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
+          <img
+            src={images[index]}
+            alt={`expanded-${index}`}
+            className="panorama-modal-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
 // ===== ChromaGrid Component =====
 export const ChromaGrid = ({
   items,
