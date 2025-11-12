@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SplitText from './components/SplitText';
+import { SplitText, ChromaGrid } from './animations';
 import profilePicture from './assets/profile-picture.svg';
 import placeholder from './assets/placeholder.svg';
 import './App.css';
@@ -145,9 +145,16 @@ function App() {
               textAlign="left"
               onLetterAnimationComplete={handleAnimationComplete}
             />
-            <div className="section-content">
-              <p>Hobbies include: photography, calligraphy, tea ceremony, hiking, and exploring traditional crafts.</p>
-              <img src={placeholder} alt="Hobby image" className="section-image" />
+            <p style={{ marginBottom: '24px', color: '#333' }}>
+              Hobbies include: photography, calligraphy, tea ceremony, hiking, and exploring traditional crafts.
+            </p>
+            <div style={{ height: '600px', position: 'relative' }}>
+              <ChromaGrid 
+                radius={300}
+                damping={0.45}
+                fadeOut={0.6}
+                ease="power3.out"
+              />
             </div>
           </div>
         </section>
