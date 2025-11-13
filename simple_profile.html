@@ -46,6 +46,15 @@
     .modal .prev{left:18px}
     .modal .next{right:18px}
 
+    /* Country tabs */
+    .country-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+    .country-tabs button{padding:8px 14px;border:2px solid #ccc;background:#fff;color:var(--muted);border-radius:6px;cursor:pointer;transition:all .18s ease;font-weight:600}
+    .country-tabs button.active{border-color:var(--accent);background:var(--accent);color:#fff}
+    .country-tabs button:hover{border-color:var(--accent)}
+    .country-content{display:none}
+    .country-content.active{display:block}
+    .country-description{margin-top:14px;color:#333;line-height:1.6;font-size:15px}
+
     @media (max-width:800px){.panorama img{width:200px;height:120px}}
     @media (max-width:520px){.hero{flex-direction:column;align-items:center}.panorama img{width:160px;height:100px}}
   </style>
@@ -103,23 +112,67 @@
 
     <section id="hobby">
       <div class="section-inner">
-        <h2 class="section-title">Hobby — Panorama</h2>
+        <h2 class="section-title">Hobby — Travelling</h2>
         <p>Click any image to expand. Use Escape to close, and left/right arrow keys to navigate.</p>
-        <div class="panorama" id="panorama">
-          <img data-index="0" src="https://picsum.photos/1200/800?random=101" alt="pan-0">
-          <img data-index="1" src="https://picsum.photos/1200/800?random=102" alt="pan-1">
-          <img data-index="2" src="https://picsum.photos/1200/800?random=103" alt="pan-2">
-          <img data-index="3" src="https://picsum.photos/1200/800?random=104" alt="pan-3">
-          <img data-index="4" src="https://picsum.photos/1200/800?random=105" alt="pan-4">
-          <img data-index="5" src="https://picsum.photos/1200/800?random=106" alt="pan-5">
+        
+        <!-- Country tabs -->
+        <div class="country-tabs">
+          <button class="country-btn active" data-country="japan">Japan</button>
+          <button class="country-btn" data-country="korea">Korea</button>
+          <button class="country-btn" data-country="netherlands">Netherlands</button>
+        </div>
+
+        <!-- Japan panorama -->
+        <div class="country-content active" data-country="japan">
+          <div class="panorama" id="panorama-japan">
+            <img data-index="0" src="images/Travelling_Hobby/Japan/001.jpg" alt="japan-0">
+            <img data-index="1" src="images/Travelling_Hobby/Japan/002.jpg" alt="japan-1">
+          </div>
+          <p class="country-description">Japan is a land of contrasts where ancient traditions meet cutting-edge modernity. From serene Buddhist temples and majestic Mount Fuji to vibrant cities and peaceful gardens, Japan offers a rich cultural experience. The hospitality, intricate craftsmanship, and natural beauty make it an unforgettable destination.</p>
+        </div>
+
+        <!-- Korea panorama -->
+        <div class="country-content" data-country="korea">
+          <div class="panorama" id="panorama-korea">
+            <img data-index="0" src="images/Travelling_Hobby/Korea/001.jpg" alt="korea-0">
+            <img data-index="1" src="images/Travelling_Hobby/Korea/002.jpg" alt="korea-1">
+          </div>
+          <p class="country-description">South Korea blends ancient heritage with dynamic energy. Its palaces, temples, and traditional markets showcase centuries of history, while Seoul pulses with innovation and style. Korean cuisine, warm hospitality, and stunning landscapes from mountains to coastal areas make it a captivating travel destination.</p>
+        </div>
+
+        <!-- Netherlands panorama -->
+        <div class="country-content" data-country="netherlands">
+          <div class="panorama" id="panorama-netherlands">
+            <img data-index="0" src="images/Travelling_Hobby/Netherlands/001.jpg" alt="netherlands-0">
+            <img data-index="1" src="images/Travelling_Hobby/Netherlands/002.jpg" alt="netherlands-1">
+          </div>
+          <p class="country-description">The Netherlands is known for its charming canals, picturesque windmills, and vibrant tulip fields. With a rich artistic heritage, world-class museums, and a cycling culture, it's a place where nature and innovation coexist. Dutch directness and warmth make visitors feel welcome in this progressive nation.</p>
         </div>
       </div>
     </section>
   </main>
 
   <script>
+    // Initialize country tabs
     (function(){
-      const panorama = document.getElementById('panorama');
+      const btns = document.querySelectorAll('.country-btn');
+      const contents = document.querySelectorAll('.country-content');
+      btns.forEach(btn => btn.addEventListener('click', ()=>{
+        btns.forEach(b => b.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const country = btn.getAttribute('data-country');
+        document.querySelector(`.country-content[data-country="${country}"]`)?.classList.add('active');
+        initPanorama(country);
+      }));
+      // Init first panorama
+      initPanorama('japan');
+    })();
+
+    // Panorama modal functionality
+    function initPanorama(country){
+      const panorama = document.getElementById(`panorama-${country}`);
+      if(!panorama) return;
       const images = Array.from(panorama.querySelectorAll('img'));
       let current = 0;
       let modalEl = null;
@@ -167,7 +220,7 @@
         const idx = Number(img.getAttribute('data-index')) || 0;
         openModal(idx);
       }));
-    })();
+    }
   </script>
 
   <script>
