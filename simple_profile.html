@@ -7,9 +7,9 @@
   <style>
     :root{--bg1:#f8f0e8;--accent:#6b21a8;--muted:#444}
     *{box-sizing:border-box}
-     /* Background uses local image if available. Place your image at: assets/images/hero-bg.jpg
+    /* Background uses local image if available. Place your image at: assets/images/hero-bg.jpg
        If that file is not present the page will fall back to the profile placeholder image, then to the gradient. */
-     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#111;background-color:#fde68a;background-image: url('assets/images/hero-bg.jpg'), url('https://i.pravatar.cc/1200?img=47'), linear-gradient(135deg,#fef3c7 0%,#fde68a 40%,#fbcfe8 100%);background-position: center center, center center, center;background-size: cover, cover, cover;background-repeat: no-repeat, no-repeat, no-repeat;background-attachment: fixed, fixed, scroll}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#111;background-color:#fde68a;background-image: url('images/Travelling_Hobby/Background/background.png'), url('https://i.pravatar.cc/1200?img=47'), linear-gradient(135deg,#fef3c7 0%,#fde68a 40%,#fbcfe8 100%);background-position: center center, center center, center;background-size: cover, cover, cover;background-repeat: no-repeat, no-repeat, no-repeat;background-attachment: fixed, fixed, scroll}
     header{position:sticky;top:0;background:rgba(255,255,255,0.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:20}
     .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px}
     .nav .logo{font-weight:700;color:var(--accent);text-decoration:none}
@@ -53,7 +53,13 @@
     .country-tabs button:hover{border-color:var(--accent)}
     .country-content{display:none}
     .country-content.active{display:block}
-    .country-description{margin-top:14px;color:#333;line-height:1.6;font-size:15px}
+    /* Collapsible sections */
+    .collapsible{background:#f5f5f5;border:1px solid #ddd;padding:12px;border-radius:6px;margin-bottom:10px;cursor:pointer;transition:all .2s ease}
+    .collapsible:hover{background:#efefef;border-color:var(--accent)}
+    .collapsible.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .collapsible-content{max-height:0;overflow:hidden;transition:max-height .3s ease}
+    .collapsible-content.show{max-height:500px;padding:12px 0}
+    .collapsible-content p{margin:8px 0;color:inherit;line-height:1.6}
 
     @media (max-width:800px){.panorama img{width:200px;height:120px}}
     @media (max-width:520px){.hero{flex-direction:column;align-items:center}.panorama img{width:160px;height:100px}}
@@ -82,31 +88,130 @@
 
   <main>
     <div class="hero" id="hero">
-      <img class="profile-pic" src="https://i.pravatar.cc/400?img=47" alt="Profile picture" />
+      <img class="profile-pic" src="images/Travelling_Hobby/Photo/CV_Photo.jfif" alt="Profile picture" />
       <div class="intro">
         <h1>Welcome — Hi, thanks for wanting to get to know me better!</h1>
-        <p>This is a simplified single-file preview page. Replace images and text with your own content. Scroll down to see sections and a panorama gallery under Hobby.</p>
+        <p>You can see more information about me and get to know me better thanks to this page! Explore my background, professional experience, education, and my passion for travelling through the different sections below.</p>
       </div>
     </div>
 
     <section id="about">
       <div class="section-inner">
         <h2 class="section-title">About me</h2>
-        <p>Short bio — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <p>I'm Ewa Żukowska, a 25-year-old audiovisual translator and language enthusiast based in Warsaw, Poland. My passion for languages began in childhood and has evolved into a professional career in translation and localization. I specialize in audiovisual content, subtitle adaptation, and cross-cultural communication.</p>
+        <p>With a Master's degree in Applied Linguistics and ongoing postgraduate studies in Audiovisual Translation, I bring both theoretical knowledge and practical expertise to every project. I'm proficient in multiple languages and experienced with industry-standard CAT tools. Beyond technical skills, I'm detail-oriented, deadline-driven, and genuinely invested in delivering high-quality translations that resonate with diverse audiences.</p>
+        <p>Outside of work, I'm an avid traveller with a deep appreciation for different cultures and cuisines. I believe that understanding cultural nuances is essential to effective translation—something I bring to every project. I'm always eager to learn, collaborate with international teams, and grow professionally in the dynamic field of audiovisual translation.</p>
       </div>
     </section>
 
     <section id="studies">
       <div class="section-inner">
         <h2 class="section-title">Studies</h2>
-        <p>Education placeholder — Bachelor of Arts in Visual Culture, 20XX–20YY.</p>
+        
+        <!-- Uniwersytet SWPS -->
+        <div class="collapsible" data-id="swps">
+          <strong>Postgraduate Studies in Audiovisual Translation — Uniwersytet SWPS (Sep 2024 – Jul 2025)</strong>
+        </div>
+        <div class="collapsible-content" data-id="swps">
+          <p>Pursuing specialized postgraduate education in audiovisual translation, focusing on subtitle delivery, localization, and international content adaptation. This program combines theoretical knowledge of translation theory with practical industry experience.</p>
+          <p><strong>Key Focus Areas:</strong></p>
+          <ul style="margin:8px 0;padding-left:20px">
+            <li>Subtitle translation and timing</li>
+            <li>Localization for global audiences</li>
+            <li>Professional audiovisual workflows</li>
+            <li>Cultural adaptation strategies</li>
+          </ul>
+        </div>
+
+        <!-- Uniwersytet Warszawski Master -->
+        <div class="collapsible" data-id="uw-masters">
+          <strong>Master's Degree in Applied Linguistics — Uniwersytet Warszawski (Oct 2022 – Jul 2024)</strong>
+        </div>
+        <div class="collapsible-content" data-id="uw-masters">
+          <p>Completed a comprehensive Master's program in Applied Linguistics with a focus on translation and linguistic analysis. Developed expertise in specialized translation techniques, CAT tools, and language technology.</p>
+          <p><strong>Key Skills Acquired:</strong></p>
+          <ul style="margin:8px 0;padding-left:20px">
+            <li>Translation theory and practice</li>
+            <li>CAT tools (memoQ, Trados, etc.)</li>
+            <li>Linguistic analysis and terminology</li>
+            <li>Specialized domain translation</li>
+            <li>Project management in translation</li>
+          </ul>
+        </div>
+
+        <!-- Uniwersytet Warszawski Bachelor -->
+        <div class="collapsible" data-id="uw-bachelor">
+          <strong>Bachelor's Degree — Uniwersytet Warszawski</strong>
+        </div>
+        <div class="collapsible-content" data-id="uw-bachelor">
+          <p>Completed foundational studies in linguistics and language sciences, building the theoretical and practical knowledge base for advanced translation work. This degree provided essential understanding of language structure, grammar, and cross-cultural communication.</p>
+          <p><strong>Foundational Knowledge:</strong></p>
+          <ul style="margin:8px 0;padding-left:20px">
+            <li>General linguistics and language theory</li>
+            <li>Grammar and syntax analysis</li>
+            <li>Introduction to translation studies</li>
+            <li>Foreign language proficiency</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section id="experience">
       <div class="section-inner">
         <h2 class="section-title">Professional experience</h2>
-        <p>Role 1 — Web Designer at Example Co. Role 2 — Frontend Developer at Company XYZ.</p>
+        
+        <!-- Marsh McLennan -->
+        <div class="collapsible" data-id="marsh">
+          <strong>Operation Specialist — Marsh McLennan (Dec 2024 – Present)</strong>
+        </div>
+        <div class="collapsible-content" data-id="marsh">
+          <p>Managing operations and coordinating with cross-functional teams in a dynamic insurance and risk management environment. This role combines administrative expertise with strategic coordination on critical business processes.</p>
+          <p><strong>Key Responsibilities:</strong></p>
+          <ul style="margin:8px 0;padding-left:20px">
+            <li>Operational coordination and process management</li>
+            <li>Cross-team communication and collaboration</li>
+            <li>Risk and compliance documentation</li>
+            <li>Performance monitoring and reporting</li>
+          </ul>
+        </div>
+
+        <!-- Audiovisual Translator -->
+        <div class="collapsible" data-id="av-translator">
+          <strong>Audiovisual Translator (Tłumacz audiowizualny) — Multiple Roles (Oct 2023 – Present)</strong>
+        </div>
+        <div class="collapsible-content" data-id="av-translator">
+          <p>Freelance and contract work as an audiovisual translator across multiple prestigious companies. Specialized in subtitle translation, localization, and audiovisual content adaptation for international audiences across various genres and formats.</p>
+          <p><strong>Companies & Roles:</strong></p>
+          <ul style="margin:8px 0;padding-left:20px">
+            <li><strong>TransPerfect</strong> (Oct 2024 – Present) — Freelance audiovisual translator</li>
+            <li><strong>Watch Docs</strong> (Nov 2023 – Present) — Contract subtitle translator</li>
+            <li><strong>ZOO Digital Group plc</strong> (Dec 2023 – Apr 2024) — Apprenticeship in audiovisual translation</li>
+          </ul>
+          <p><strong>Key Expertise:</strong></p>
+          <ul style="margin:8px 0;padding-left:20px">
+            <li>Subtitle translation and timing synchronization</li>
+            <li>Cultural and linguistic localization</li>
+            <li>Quality assurance and format compliance</li>
+            <li>Fast-paced deadline management</li>
+          </ul>
+        </div>
+
+        <!-- Iyuno Coordinator -->
+        <div class="collapsible" data-id="iyuno">
+          <strong>Subtitle Delivery Coordinator — Iyuno (Aug 2023 – Dec 2024)</strong>
+        </div>
+        <div class="collapsible-content" data-id="iyuno">
+          <p>Coordinated subtitle delivery projects, managed timelines, and ensured quality standards for global content distribution. Worked with international teams across multiple time zones to deliver high-quality localized content on schedule.</p>
+          <p><strong>Key Responsibilities:</strong></p>
+          <ul style="margin:8px 0;padding-left:20px">
+            <li>Project timeline coordination and tracking</li>
+            <li>Quality assurance and compliance verification</li>
+            <li>Client and vendor communication management</li>
+            <li>International team coordination across time zones</li>
+            <li>Delivery optimization and problem-solving</li>
+          </ul>
+          <p>This role strengthened my understanding of global translation workflows and the importance of precision in large-scale content distribution.</p>
+        </div>
       </div>
     </section>
 
@@ -153,7 +258,24 @@
   </main>
 
   <script>
-    // Initialize country tabs
+    // Initialize collapsible sections (Studies & Experience)
+    (function(){
+      const collapsibles = document.querySelectorAll('.collapsible');
+      collapsibles.forEach(btn => {
+        btn.addEventListener('click', ()=>{
+          const id = btn.getAttribute('data-id');
+          const content = document.querySelector(`.collapsible-content[data-id="${id}"]`);
+          if(!content) return;
+          
+          // Toggle active state
+          btn.classList.toggle('active');
+          content.classList.toggle('show');
+        });
+      });
+    })();
+  </script>
+
+  <script>
     (function(){
       const btns = document.querySelectorAll('.country-btn');
       const contents = document.querySelectorAll('.country-content');
