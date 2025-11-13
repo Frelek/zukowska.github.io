@@ -7,8 +7,9 @@
   <style>
     :root{--bg1:#f8f0e8;--accent:#6b21a8;--muted:#444}
     *{box-sizing:border-box}
-    /* Background uses local image if available. Place your image at: assets/images/hero-bg.jpg */
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#111;background-color:#fde68a;background-image: url('assets/images/hero-bg.jpg'), linear-gradient(135deg,#fef3c7 0%,#fde68a 40%,#fbcfe8 100%);background-position: center center, center;background-size: cover, cover;background-repeat: no-repeat, no-repeat;background-attachment: fixed, scroll}
+     /* Background uses local image if available. Place your image at: assets/images/hero-bg.jpg
+       If that file is not present the page will fall back to the profile placeholder image, then to the gradient. */
+     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#111;background-color:#fde68a;background-image: url('assets/images/hero-bg.jpg'), url('https://i.pravatar.cc/1200?img=47'), linear-gradient(135deg,#fef3c7 0%,#fde68a 40%,#fbcfe8 100%);background-position: center center, center center, center;background-size: cover, cover, cover;background-repeat: no-repeat, no-repeat, no-repeat;background-attachment: fixed, fixed, scroll}
     header{position:sticky;top:0;background:rgba(255,255,255,0.6);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:20}
     .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px}
     .nav .logo{font-weight:700;color:var(--accent);text-decoration:none}
@@ -27,7 +28,8 @@
     .section-title{margin:0 0 12px 0;font-size:18px;color:#0f172a}
 
     /* Welcome overlay (full-screen) */
-    #welcome-overlay{position:fixed;inset:0;display:grid;place-items:center;z-index:1200;background:linear-gradient(rgba(6,6,7,0.65),rgba(6,6,7,0.45));backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);opacity:1}
+    /* overlay is semi-opaque but does NOT blur the background image */
+    #welcome-overlay{position:fixed;inset:0;display:grid;place-items:center;z-index:1200;background:linear-gradient(rgba(6,6,7,0.55),rgba(6,6,7,0.35));opacity:1}
     #welcome-inner{padding:18px;text-align:center}
     #welcome-text{color:#fff;font-weight:800;margin:0;font-size:clamp(28px,7vw,84px);line-height:1;letter-spacing:0.02em;text-shadow:0 8px 30px rgba(0,0,0,0.6)}
     .welcome-char{display:inline-block}
@@ -54,7 +56,7 @@
   <!-- Full-screen welcome overlay -->
   <div id="welcome-overlay" aria-hidden="false">
     <div id="welcome-inner">
-      <h1 id="welcome-text">Welcome to my page</h1>
+      <h1 id="welcome-text">Hi! Thanks for checking my page out!</h1>
     </div>
   </div>
   <header>
